@@ -14,7 +14,7 @@
 
         $.ajax(settings).done(function (response) {
             console.log(response);
-            let bloodFloat = parseFloat(response[0].sgv/18);
+            var bloodFloat = parseFloat(response[0].sgv/18);
             var content = bloodFloat.toPrecision(2).toString();
             $("#blood").append(content);
 
@@ -22,8 +22,9 @@
     </script>
 </head>
 <body>
-<h1>Sample Page</h1>
+<h1>
 <div id="blood">Blood sugar: </div>
+</h1>
 </body>
 </html>
 
