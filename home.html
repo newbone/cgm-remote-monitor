@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <title>Sample Page</title>
+    <script>
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://rufusnightscout.herokuapp.com/api/v1/entries/current.json",
+            "method": "GET"
+        }
+
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+            let bloodFloat = parseFloat(response[0].sgv/18);
+            var content = bloodFloat.toPrecision(2).toString();
+            $("#blood").append(content);
+
+        });
+    </script>
+</head>
+<body>
+<h1>Sample Page</h1>
+<div id="blood">Blood sugar: </div>
+</body>
+</html>
+
