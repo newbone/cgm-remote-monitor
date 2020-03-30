@@ -21,13 +21,34 @@
             var trend = response[0].direction;
             $("#bstrend").append(trend);
 
+
+        var r=34;
+        var g=139;
+        var b=34;
+
+        if(bloodFloat > 7) {
+            r = 0;
+            g= 0;
+            b= 255;
+        }
+        if(bloodFloat < 3.5) {
+            r = 255;
+            g= 0;
+            b= 0;
+        }
+        var thergb = "rgb(" + r + "," + g + "," + b + ")";
+
+        document.body.style.background=(thergb);
         });
     </script>
+
 </head>
 <body>
 <h1>
     <div id="blood">Blood sugar: </div>
     <div id="bstrend">Trend: </div>
+
+
 </h1>
 </body>
 </html>
