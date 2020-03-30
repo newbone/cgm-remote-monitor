@@ -14,12 +14,37 @@
         }
 
         $.ajax(settings).done(function (response) {
-
+            var arrow;
             var bloodFloat = parseFloat(response[0].sgv/18);
             var currentbs = bloodFloat.toFixed(1).toString();
             $("#blood").append(currentbs);
             var trend = response[0].direction;
-            $("#bstrend").append(trend);
+            var arrow = trend;
+            switch (trend) {
+                case "SingleUp":
+                    arrow = "&#8593;";
+                    break;
+                case "Flat":
+                    arrow = "&#8594;";
+                    break;
+                case "SingleDown":
+                    arrow = "&#8595;";
+                    break;
+                case "FortyFiveUp":
+                    arrow = "&#8599;";
+                    break;
+                case "FortFiveDown":
+                    arrow = "&#8600;";
+                    break;
+                case "DoubleUp":
+                    arrow = "&#8593;"+"&#8593;";
+                    break;
+                case "DoubleDown":
+                    arrow = "&#8595;"+"&#8595;";
+                    break;
+
+            }
+            $("#bstrend").append(arrow);
 
 
         var r=34;
