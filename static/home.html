@@ -19,7 +19,8 @@
             var currentbs = bloodFloat.toFixed(1).toString();
             $("#blood").append(currentbs);
             var trend = response[0].direction;
-            $("bstrend").append(trend);
+            trend = "up";
+            $("#bstrend").append(trend);
 
         });
     </script>
