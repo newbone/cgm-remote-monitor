@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <title>Sample Page</title>
+    <meta http-equiv="refresh" content="60" >
     <script>
         var settings = {
             "async": true,
@@ -13,17 +14,20 @@
         }
 
         $.ajax(settings).done(function (response) {
-            console.log(response);
+
             var bloodFloat = parseFloat(response[0].sgv/18);
-            var content = bloodFloat.toPrecision(2).toString();
-            $("#blood").append(content);
+            var currentbs = bloodFloat.toFixed(1).toString();
+            $("#blood").append(currentbs);
+            var trend = response[0].direction;
+            $("bstrend").append(trend);
 
         });
     </script>
 </head>
 <body>
 <h1>
-<div id="blood">Blood sugar: </div>
+    <div id="blood">Blood sugar: </div>
+    <div id="bstrend">Trend: </div>
 </h1>
 </body>
 </html>
