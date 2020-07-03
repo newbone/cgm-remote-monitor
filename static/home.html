@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <title>Sample Page</title>
+    <title>Rufus</title>
     <meta http-equiv="refresh" content="60" >
     <script>
         var settings = {
@@ -17,7 +17,15 @@
             var arrow;
             var bloodFloat = parseFloat(response[0].sgv/18);
             var currentbs = bloodFloat.toFixed(1).toString();
-            $("#blood").append(currentbs);
+            var timeSinceLastReading =  Math.floor((new Date()-response[0].date)/60000) ;
+            if(timeSinceLastReading>10)
+            {
+                currentbs=currentbs.strike();
+            }
+
+                $("#blood").append(currentbs);
+
+
             var trend = response[0].direction;
             var arrow = trend;
             switch (trend) {
@@ -61,9 +69,18 @@
             g= 0;
             b= 0;
         }
+        if(timeSinceLastReading>2)
+        {
+            r = 255;
+            g= 255;
+            b= 0;
+
+        }
         var thergb = "rgb(" + r + "," + g + "," + b + ")";
 
         document.body.style.background=(thergb);
+
+            $("#time").append(timeSinceLastReading + " min");
         });
     </script>
 
@@ -71,9 +88,12 @@
 <body>
 <center>
 <h1>
-    <h1 style=font-size:200px>
-    <div id="blood"></div>
-    <div id="bstrend"></div>
+
+        </h1><h1 style=font-size:250px>
+        <div id="blood"></div>
+        <div id="bstrend"></div>
+        </h1><h1 style=font-size:100px>
+        <div id="time"></div>
 </h1>
 </center>
 </body>
